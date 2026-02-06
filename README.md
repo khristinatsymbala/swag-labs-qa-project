@@ -104,6 +104,7 @@ Accessibility is treated as a first-class testing area:
 - Wave
 
 ## Project Structure
+```
 saucedemo-qa/
 │
 ├── README.md
@@ -155,3 +156,4 @@ saucedemo-qa/
 │
 └── assets/
     └── screenshots/
+  ```
