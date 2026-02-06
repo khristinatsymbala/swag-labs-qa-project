@@ -16,5 +16,4 @@ test.describe('Check shopping functionality before redirecting to the shopping c
         await expect(inventoryPage.logoText).toContainText(expectedLogoText)
 
     })
-
 })

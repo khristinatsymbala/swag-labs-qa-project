@@ -1,4 +1,4 @@
-import { test } from '../tests/fixture/pageManager.fexture';
+import { test } from '../tests/fixture/pageManager.fixture';
 import { expect } from '@playwright/test';
 import { getUserByRole } from "../page-objects/loginPage";
 import { UserRole } from '../test-data/loginPage/userRoles';
