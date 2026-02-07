@@ -106,7 +106,7 @@ export const expectedInventoryIteams: InventoryIteam[] = [
         price: '15.99'
     }
 ]
-
+export const indexItem = 3
 //Footer
 //Url for socials
 export const expectededTwitterUrl = 'https://twitter.com/saucelabs' // social-twitter
