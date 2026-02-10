@@ -4,11 +4,11 @@ import { LoginPage, getUserByRole } from '../../page-objects/loginPage'
 import { UserRole } from '../../test-data/loginPage/userRoles'
 
 type Fixtures = {
-    inventoryPage: PageManager['onInventoryPage']
+    onInventoryPage: PageManager['onInventoryPage']
 }
 
 export const test = base.extend<Fixtures>({
-    inventoryPage: async ({ page }, use) => {
+    onInventoryPage: async ({ page }, use) => {
         const pm = new PageManager(page)
         const user = getUserByRole(UserRole.Standard)!
 

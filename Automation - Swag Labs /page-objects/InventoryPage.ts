@@ -63,9 +63,14 @@ export class InventoryPage {
             await button.click()
         } else { console.log('Product is already added to the cart') }
 
-        // this.countProductInCart++
-        // console.log(this.countProductInCart)
+    }
 
+    // Add multipal products 
+    async addMultiplProductsToShoppingCart() {
+        for (let i = 0; i < 5; i++) {
+            const productIndex = i++
+            await this.addProductToShoppingCartbyIndex(productIndex)
+        }
     }
 
     async removeProductToShoppingCartbyIndex(index: number) {
@@ -78,13 +83,8 @@ export class InventoryPage {
             await button.click()
         } else { console.log('Product is not in the cart') }
 
-        // this.countProductInCart--
-        // console.log(this.countProductInCart)
     }
 
-    // async getcountProductInCart(): Promise<number> {
-    //     return this.countProductInCart
-    // }
     async getShoppingCartBadgeCount(): Promise<number> {
         const text = await this.shoppingCartBadge.textContent();
         return text ? Number(text) : 0;
