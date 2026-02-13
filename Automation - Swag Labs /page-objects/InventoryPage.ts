@@ -9,7 +9,8 @@ export class InventoryPage {
     readonly logoText: Locator
     readonly shoppingCartImg: Locator
     readonly shoppingCartBadge: Locator
-    //countProductInCart: number
+
+
 
     constructor(page: Page) {
         this.page = page
@@ -19,7 +20,7 @@ export class InventoryPage {
         this.logoText = page.locator('.app_logo')
         this.shoppingCartImg = page.getByTestId('shopping-cart-link')
         this.shoppingCartBadge = page.getByTestId('shopping-cart-badge')
-        //this.countProductInCart = 0
+
     }
     // Array of the inventory products - like vector
     async getInventoryIteams(): Promise<InventoryIteam[]> {

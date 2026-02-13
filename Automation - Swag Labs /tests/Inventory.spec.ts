@@ -1,6 +1,7 @@
 import { expect, test } from "./fixture/inventory.fixture";
 import { InventoryPage } from "../page-objects/InventoryPage";
 import { expectedLogoText } from "../test-data/inventoryPage/inventoryTestData"
+import { url } from "node:inspector";
 
 test('Check the correctness of the inventory page', async ({ onInventoryPage }) => {
 
@@ -23,7 +24,7 @@ test.describe('TS-05 - Check shopping functionality before redirecting to the sh
         const cartBadgeCount = await onInventoryPage.getShoppingCartBadgeCount()
         const addedProductsCount = await onInventoryPage.getAddedProductsCount()
 
-        expect(cartBadgeCount).toBe(addedProductsCount);
+        await expect(cartBadgeCount).toBe(addedProductsCount);
 
     })
     test('TC_IP_02 - Verify the ability to remove the product from the shopping cart', async ({ onInventoryPage }) => {
@@ -44,7 +45,7 @@ test.describe('TS-05 - Check shopping functionality before redirecting to the sh
 
         // Assert update state
         const updateCount = await onInventoryPage.getAddedProductsCount()
-        expect(updateCount).toBe(1)
+        await expect(updateCount).toBe(1)
 
 
     })
@@ -62,18 +63,33 @@ test.describe('TS-05 - Check shopping functionality before redirecting to the sh
         const productIndexToRemove = 4
 
         //Act
-        onInventoryPage.addMultiplProductsToShoppingCart()
+        await onInventoryPage.addMultiplProductsToShoppingCart()
         await onInventoryPage.removeProductToShoppingCartbyIndex(productIndexToRemove)
 
         //Assert
         const cartBadgeCount = await onInventoryPage.getShoppingCartBadgeCount()
         const addedProductCount = await onInventoryPage.getAddedProductsCount()
-        expect(cartBadgeCount).toBe(addedProductCount);
+        await expect(cartBadgeCount).toBe(addedProductCount);
     })
     test('TC_IP_05 - Verify the ability to add the same product twice to the shopping cart', async ({ onInventoryPage }) => {
-        // 
+        //Arrange
+        const productIndex = 3
+        //Act
+        await onInventoryPage.addProductToShoppingCartbyIndex(productIndex)
+        await onInventoryPage.shoppingCartImg.click()
+
+        //Assert initial state
+        await expect(onInventoryPage.page).toHaveURL('/cart.html')
+
+        //Act
+
+
     })
     test('TC_IP_06 - Verify redirection from the inventory page to the shopping cart page when the cart is empty.', async ({ onInventoryPage }) => {
-        //
+        //Act
+        await onInventoryPage.shoppingCartImg.click()
+
+        //Assert
+        await expect(onInventoryPage.page).toHaveURL('/cart.html')
     })
 })
